@@ -9,19 +9,15 @@
  */
 $pm = $plugin->getServer()->getPluginManager();
 
-if (($kr = $pm->getPlugin("KillRate")) !== null) {
-	if (version_compare($kr->getDescription()->getVersion(),"1.1") >= 0) {
-		$vars["{score}"] = $kr->getScore($player);
-		$ranks = $kr->getRankings(3);
-		if ($ranks == null) {
-			$vars["{tops}"] = "N/A";
+if (($factions = $pm->getPlugin("FactionsPro")) !== null) {
+	if (version_compare($factions->getDescription()->getVersion(),"1") >= 0) {
+		$vars["{faction}"] = $faction->getPlayerFaction($player->getName());
+		$isInFaction = $faction->isInFaction();
+		if (!$isInFaction){
+			$vars["{faction}"] = "N/A";
 		} else {
-			$vars["{tops}"] = "";
-			$i = 1; $q = "";
-			foreach ($ranks as $r) {
-				$vars["{tops}"] .= $q.($i++).". ".substr($r["player"],0,8).
-									 " ".$r["count"];
-				$q = "   ";
+			$vars["{faction}"] = $faction->getPlayerFaction($player->getName());
+	
 			}
 		}
 	}
