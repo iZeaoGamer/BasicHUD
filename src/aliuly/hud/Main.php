@@ -228,6 +228,7 @@ class Main extends PluginBase implements Listener, CommandExecutor{
 			"{UNDERLINE}" => TextFormat::UNDERLINE,
 			"{ITALIC}" => TextFormat::ITALIC,
 			"{RESET}" => TextFormat::RESET,
+			"&" => "§",
 		];
 
 
